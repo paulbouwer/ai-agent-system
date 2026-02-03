@@ -1,0 +1,138 @@
+{
+  "name": "AI Agent System",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  // https://github.com/devcontainers/images/tree/main/src/base-ubuntu
+
+  // Container settings
+  "remoteUser": "vscode",
+  "privileged": false,
+  "shutdownAction": "stopContainer",
+  "init": true,
+
+  // Lifecycle hooks
+  "postCreateCommand": "bash .devcontainer/post-create.sh --workspace-folder ${containerWorkspaceFolder}",
+  "postStartCommand": "bash .devcontainer/post-start.sh --workspace-folder ${containerWorkspaceFolder}",
+
+  // Mounts
+  "mounts": [
+    // User specific post-create and post-start lifecycle scripts
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.devcontainer-extensions,target=${containerWorkspaceFolder}/.devcontainer-extensions,type=bind,consistency=cached"
+  ],
+
+  // Features
+  "features": {
+    // Bash development
+    "ghcr.io/devcontainers-extra/features/shellcheck:1": { "version": "0.11.0" },
+    "ghcr.io/devcontainers-extra/features/shfmt:1": { "version": "3.12.0" },
+
+    // GitHub CLI
+    "ghcr.io/devcontainers/features/github-cli:1": { "version": "2.86.0" },
+
+    // CLI based coding agents
+    "ghcr.io/devcontainers/features/copilot-cli:1": { "version": "0.0.400" }
+  },
+
+  // VS Code customizations
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Editor defaults
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": true,
+        "editor.tabSize": 2,
+
+        // Bash settings
+        "shellcheck.enable": true,
+        "shellcheck.run": "onSave",
+        "shellformat.flag": "-i 2 -ci",
+        "[shellscript]": {
+          "editor.defaultFormatter": "foxundermoon.shell-format",
+          "editor.formatOnSave": true,
+          "editor.tabSize": 2
+        }
+      },
+      "extensions": [
+
+        // ------------------------------------------------------------------------
+        // GitHub Copilot
+        //
+
+        "GitHub.copilot",
+        // Provides AI-assisted code completions and inline suggestions tailored to
+        // the context of the file you're editing. It accelerates drafting markdown
+        // content, shell scripts, or supporting snippets by learning from your
+        // project and prompts.
+
+        "GitHub.copilot-chat",
+        // Adds a chat-based Copilot interface inside VS Code for conversational
+        // guidance, code explanations, and quick fixes. Helpful when you want
+        // step-by-step assistance or need to reason about changes without leaving
+        // the editor.
+
+        // ------------------------------------------------------------------------
+        // Markdown
+        //
+
+        "yzhang.markdown-all-in-one",
+        // Packs common markdown conveniences such as shortcuts, automatic table of
+        // contents generation, and export commands. It streamlines day-to-day
+        // authoring of posts and documentation with keyboard-friendly tooling.
+
+        "DavidAnson.vscode-markdownlint",
+        // Runs Markdownlint rules within VS Code to highlight formatting and
+        // structural issues as you type. Ensures content adheres to consistent
+        // style guidelines before review or publication.
+
+        "bierner.markdown-yaml-preamble",
+        // Render YAML front matter as a table in VS Code's built-in markdown
+        // preview.
+
+        "mermaidchart.vscode-mermaid-chart",
+        // Adds Mermaid diagram support with live preview, syntax highlighting, and
+        // error detection. Useful for creating and editing flowcharts, sequence
+        // diagrams, and architecture visuals directly in markdown files.
+
+        // ------------------------------------------------------------------------
+        // General
+        //
+
+        "streetsidesoftware.code-spell-checker",
+        // Provides inline spell checking tuned for technical writing to catch typos
+        // and mis-capitalised terms. Its dictionaries can be customised with project
+        // jargon to minimise false positives.
+
+        "streetsidesoftware.code-spell-checker-australian-english",
+        // Imports the Australian English spell checking dictionary for Code Spell
+        // Checker.
+
+        "esbenp.prettier-vscode",
+        // Integrates the Prettier formatter so markdown (and other supported
+        // formats) can be auto-formatted on demand. Guarantees a consistent look
+        // and spacing across collaboratively edited documents.
+
+        // ------------------------------------------------------------------------
+        // Bash
+        //
+
+        "mads-hartmann.bash-ide-vscode",
+        // Bash Language Server - provides language server protocol features including
+        // code completion, hover documentation, go-to-definition, find references,
+        // and symbol highlighting for Bash scripts.
+
+        "rogalmic.bash-debug",
+        // Bash Debug - provides debugging support for Bash scripts including
+        // breakpoints, stepping, variable inspection, and call stack navigation.
+
+        "timonwong.shellcheck",
+        // ShellCheck - integrates the ShellCheck static analysis tool for real-time
+        // linting of shell scripts. Identifies bugs, syntax issues, and suggests
+        // improvements as you type.
+
+        "foxundermoon.shell-format"
+        // Shell Format - integrates shfmt formatter for consistent shell script
+        // formatting. Provides format-on-save capability with configurable
+        // indentation and style options.
+      ]
+    }
+  }
+}
