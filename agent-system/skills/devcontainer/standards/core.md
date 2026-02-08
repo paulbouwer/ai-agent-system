@@ -116,8 +116,7 @@ Lifecycle hooks use a modular `.d` directory pattern (similar to Linux init syst
 ├── devcontainer.json       # Main configuration (REQUIRED)
 ├── post-create.sh          # Orchestrator (REQUIRED)
 ├── post-start.sh           # Orchestrator (REQUIRED)
-├── lib/
-│   └── run-scripts.sh      # Shared runner library
+├── run-scripts.sh          # Shared runner library (REQUIRED)
 ├── post-create.d/          # Post-create scripts
 │   └── 00-git-safe-directory.sh
 └── post-start.d/           # Post-start scripts
@@ -126,7 +125,7 @@ Lifecycle hooks use a modular `.d` directory pattern (similar to Linux init syst
 
 ### How It Works
 
-1. `post-create.sh` and `post-start.sh` source `lib/run-scripts.sh`
+1. `post-create.sh` and `post-start.sh` source `run-scripts.sh`
 2. The runner scans the corresponding `.d` directory for `*.sh` files
 3. Scripts execute in **sorted order** (numerical, then alphabetical)
 4. Execution is **fail-fast** — first failure stops all subsequent scripts
@@ -185,11 +184,11 @@ Each script in a `.d` directory **MUST**:
 ├── devcontainer.json       # Main configuration (REQUIRED)
 ├── post-create.sh          # Post-create orchestrator (REQUIRED)
 ├── post-start.sh           # Post-start orchestrator (REQUIRED)
-├── lib/
-│   └── run-scripts.sh      # Shared runner library (REQUIRED)
+├── run-scripts.sh          # Shared runner library (REQUIRED)
 ├── post-create.d/          # Post-create scripts (REQUIRED)
 │   └── 00-git-safe-directory.sh
 └── post-start.d/           # Post-start scripts (REQUIRED)
+    └── .gitkeep
 ```
 
 ---

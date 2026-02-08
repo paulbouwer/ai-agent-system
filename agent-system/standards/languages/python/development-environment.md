@@ -15,7 +15,7 @@ DevContainer configuration and VS Code settings for Python development.
       "version": "3.12"
     },
     "ghcr.io/devcontainers-extra/features/uv:1": {},
-    "ghcr.io/devcontainers-extra/features/ruff:1": {}
+    "ghcr.io/devcontainers-extra/features/ruff:2": {}
   }
 }
 ```

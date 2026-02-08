@@ -1,9 +1,9 @@
 # Decision Record: {Decision Title}
 
-**Status:** {Proposed | Accepted | Deprecated | Superseded}
-**Deciders:** {Names or roles involved}
-**Date:** {DD MMMM YYYY}
-**Related Docs:** {Links to relevant Decision Records, plans, or issues}
+- **Status:** {Proposed | Accepted | Deprecated | Superseded}
+- **Deciders:** {Names or roles involved}
+- **Date:** {DD MMMM YYYY}
+- **Related Docs:** {Links to relevant Decision Records, plans, or issues}
 
 ## Summary (Y-Statement)
 
